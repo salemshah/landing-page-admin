@@ -29,25 +29,25 @@ function App() {
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <TextField fullwidth id="ttile" label="Titre d'accueil" variant="outlined" />
-                <FormHelperText id="title">Le titre d'accueil</FormHelperText>
+                <FormHelperText id="title">Le gros titre qui s&apos;affiche dans la section accueil</FormHelperText>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <TextField fullwidth id="anim-text1" label="Titre d'animation 1" variant="outlined" />
-                <FormHelperText id="anim-text1">Le titre d'animation</FormHelperText>
+                <FormHelperText id="anim-text1">Texte animé 1 Dans la page d&apos;accueil, il y a du texte animé</FormHelperText>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <TextField fullwidth id="anim-text2" label="Titre d'animation 2" variant="outlined" />
-                <FormHelperText id="anim-text2">Le titre d'animation</FormHelperText>
+                <FormHelperText id="anim-text2">Texte animé 2 Dans la page d&apos;accueil, il y a du texte animé</FormHelperText>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
               <FormControl fullWidth>
                 <TextEditor />
-                <FormHelperText id="lang-hero-text">Lange text sur hero</FormHelperText>
+                <FormHelperText id="lang-hero-text">Text descriptive de page d&apos;accueil</FormHelperText>
               </FormControl>
             </Grid>
           </Grid>
