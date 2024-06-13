@@ -28,10 +28,20 @@ import '@fontsource/poppins/700.css';
 import 'assets/scss/style.scss';
 import reportWebVitals from 'reportWebVitals';
 
-// swiper slider
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import 'react-quill/dist/quill.snow.css'
+
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark-reasonable.css';
+
+// ----------------------------------------------------------------------
+
+hljs.configure({
+  languages: ['javascript', 'jsx', 'sh', 'bash', 'html', 'scss', 'css', 'json'],
+});
+
+if (typeof window !== 'undefined') {
+  window.hljs = hljs;
+}
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
