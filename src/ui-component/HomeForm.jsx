@@ -6,19 +6,19 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 
-const hero = {
-  'imgUrl': '/images/home-banner.png',
-  'heading': 'BIENVENUE SUR MINDA',
-  'typingText': [
-    'On joue ?',
-    1500,
-    'MindA est le premier jeu éducatif pensé comme un vrai jeu vidéo Visitez notre site pour en savoir plus.',
-    1500
-  ],
-  'description': 'MindA est le premier jeu éducatif pensé comme un vrai jeu vidéo Visitez notre site pour en savoir plus.',
-  'btnText': 'Entrer en contact',
-  'btnUrl': 'contactus'
-};
+// const hero = {
+//   'imgUrl': '/images/home-banner.png',
+//   'heading': 'BIENVENUE SUR MINDA',
+//   'typingText': [
+//     'On joue ?',
+//     1500,
+//     'MindA est le premier jeu éducatif pensé comme un vrai jeu vidéo Visitez notre site pour en savoir plus.',
+//     1500
+//   ],
+//   'description': 'MindA est le premier jeu éducatif pensé comme un vrai jeu vidéo Visitez notre site pour en savoir plus.',
+//   'btnText': 'Entrer en contact',
+//   'btnUrl': 'contactus'
+// };
 
 function App() {
   return (
