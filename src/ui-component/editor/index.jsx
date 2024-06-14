@@ -36,7 +36,7 @@ Editor.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   error: PropTypes.bool,
-  helperText: PropTypes.node,
+  helperText: PropTypes?.node,
   simple: PropTypes.bool,
   sx: PropTypes.object
 };

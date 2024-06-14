@@ -70,15 +70,15 @@ const MainCard = React.forwardRef(
 MainCard.propTypes = {
   border: PropTypes.bool,
   boxShadow: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes?.node,
   content: PropTypes.bool,
   contentClass: PropTypes.string,
   contentSX: PropTypes.object,
   darkTitle: PropTypes.bool,
-  secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
+  secondary: PropTypes.oneOfType([PropTypes?.node, PropTypes.string, PropTypes.object]),
   shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   sx: PropTypes.object,
-  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object])
+  title: PropTypes.oneOfType([PropTypes?.node, PropTypes.string, PropTypes.object])
 };
 
 export default MainCard;

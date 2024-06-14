@@ -97,7 +97,7 @@ const Transitions = React.forwardRef(({ children, position, type, direction, ...
 });
 
 Transitions.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes?.node,
   type: PropTypes.oneOf(['grow', 'fade', 'collapse', 'slide', 'zoom']),
   position: PropTypes.oneOf(['top-left', 'top-right', 'top', 'bottom-left', 'bottom-right', 'bottom']),
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right'])

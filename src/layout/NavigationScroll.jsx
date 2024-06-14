@@ -16,7 +16,7 @@ const NavigationScroll = ({ children }) => {
 };
 
 NavigationScroll.propTypes = {
-  children: PropTypes.node
+  children: PropTypes?.node
 };
 
 export default NavigationScroll;

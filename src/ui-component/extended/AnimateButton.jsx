@@ -73,7 +73,7 @@ const AnimateButton = React.forwardRef(({ children, type, direction, offset, sca
 });
 
 AnimateButton.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes?.node,
   offset: PropTypes.number,
   type: PropTypes.oneOf(['slide', 'scale', 'rotate']),
   direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),

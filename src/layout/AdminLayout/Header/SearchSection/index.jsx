@@ -45,7 +45,7 @@ const HeaderAvatar = forwardRef(({ children, ...others }, ref) => {
 });
 
 HeaderAvatar.propTypes = {
-  children: PropTypes.node
+  children: PropTypes?.node
 };
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
