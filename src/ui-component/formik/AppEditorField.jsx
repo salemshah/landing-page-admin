@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, FormHelperText } from '@mui/material';
-import { Field, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import Editor from '../editor';
 
 const AppEditorField = ({ name, helper }) => {
@@ -8,22 +8,16 @@ const AppEditorField = ({ name, helper }) => {
 
   return (
     <FormControl fullWidth error={touched[name] && !!errors[name]}>
-      <Field
-        name={name}
-        component={({ field }) => (
-          <Editor
-
-            id={name}
-            value={values[name]}
-            onChange={(value) => setFieldValue(name, value)}
-            error={!!errors[name]}
-            helperText={
-              <FormHelperText>
-                {errors[name]}
-              </FormHelperText>
-            }
-          />
-        )}
+      <Editor
+        id={name}
+        value={values[name]}
+        onChange={(value) => setFieldValue(name, value)}
+        error={!!errors[name] && touched[name]}
+        helperText={
+          !!errors[name] && touched[name] && <FormHelperText>
+            {errors[name]}
+          </FormHelperText>
+        }
       />
       {helper && <FormHelperText>{helper}</FormHelperText>}
     </FormControl>

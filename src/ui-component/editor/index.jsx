@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
-import debounce from 'lodash.debounce';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import EditorToolbar, { formats, redoChange, undoChange } from './EditorToolbar';
+import { useSelector } from 'react-redux';
+import { useFormikContext } from 'formik';
 
 
 const RootStyle = styled(Box)(({ theme }) => ({
@@ -50,12 +51,26 @@ export default function Editor({
                                  sx,
                                  ...other
                                }) {
+
+  const { isEdit, heroToEdit } = useSelector(state => state.hero);
+  const { setFieldValue } = useFormikContext();
   const [content, setContent] = useState(null);
   const quillRef = useRef(null);
   const handleChange = (value) => {
     setContent(value);
     onChange(value);
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      setFieldValue('description', heroToEdit?.description);
+      setContent(heroToEdit?.description);
+    } else {
+      setFieldValue('description', '');
+      setContent(null);
+    }
+
+  }, [heroToEdit]);
 
   const modules = {
     toolbar: {
@@ -89,8 +104,8 @@ export default function Editor({
       >
         <EditorToolbar id={id} isSimple={simple} />
         <ReactQuill
-          ref={quillRef}
-          value={content}
+          refs={quillRef}
+          value={content || heroToEdit?.description}
           onChange={handleChange}
           modules={modules}
           formats={formats}

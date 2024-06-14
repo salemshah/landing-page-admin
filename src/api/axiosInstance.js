@@ -22,13 +22,9 @@ axiosInstance.interceptors.request.use(
 
 // Response interceptor
 axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   (error) => {
-    // Handle errors (e.g., token expiration, network errors)
     if (error.response && error.response.status === 401) {
-      // Handle unauthorized error, for example, by redirecting to login page
       window.location.href = '/login';
     }
     return Promise.reject(error);
