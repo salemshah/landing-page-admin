@@ -1,21 +1,32 @@
-// src/components/ImageUpload.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, FormControl, FormHelperText } from '@mui/material';
 import { useFormikContext } from 'formik';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import { useSelector } from 'react-redux';
 
 const AppImageUpload = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isHover, setHover] = useState(false);
+  const { isEdit, heroToEdit } = useSelector(state => state.hero);
   const { setFieldValue, errors, touched } = useFormikContext();
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       setSelectedImage(URL.createObjectURL(file));
       setFieldValue('image', file);
     }
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      setSelectedImage(heroToEdit?.image);
+      setFieldValue('image', heroToEdit?.image);
+    } else {
+      setSelectedImage(null);
+      setFieldValue('image', null);
+    }
+  }, [heroToEdit, isEdit]);
 
   const handleRemoveImage = () => {
     setSelectedImage(null);
@@ -24,57 +35,65 @@ const AppImageUpload = () => {
 
 
   return (
-    <FormControl fullWidth error={touched.image && !!errors.image}>
-      <Box
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        sx={{
-
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: (theme) => errors.image ? `1px dashed ${theme.palette.error.main}` : '1px dashed #ccc',
-          borderRadius: 1,
-          p: 1,
-          height: '440px',
-          position: 'relative'
-        }}
-      >
-        {selectedImage ? (
-          <>
-            {isHover &&
-              <Box onClick={handleRemoveImage}
-                   sx={{
-                     backgroundColor: '#fff',
-                     position: 'absolute',
-                     borderRadius: '5px',
-                     bottom: 10,
-                     left: 10
-                   }}>
-                <DeleteForeverOutlinedIcon color="error" fontSize="large" />
-              </Box>
-            }
-            <img
-              src={selectedImage}
-              alt="Selected"
-              style={{ maxHeight: '100%', width: '100%', objectFit: 'scale-down', borderRadius: '8px' }}
-            />
-          </>
-        ) : (
-          <>
-            <Typography sx={{ position: 'absolute' }}>Upload image</Typography>
-            <input
-              type="file"
-              style={{ width: '100%', height: '100%', opacity: 0 }}
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </>
-        )}
-      </Box>
+    <label id="image">
+      <FormControl sx={{
+        height: 'calc(100% - 1.5rem)',
+        border: (theme) => errors.image && touched['image'] ? `1px solid ${theme.palette.error.main}` : '1px solid #ccc',
+        borderRadius: 2.5,
+        p: 2
+      }} fullWidth
+                   error={touched.image && !!errors.image}>
+        <Box
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: (theme) => `2px dashed ${theme.palette.primary.main}`,
+            borderRadius: 1,
+            p: 1,
+            height: '100%',
+            position: 'relative'
+          }}
+        >
+          {selectedImage ? (
+            <>
+              {isHover &&
+                <Box onClick={handleRemoveImage}
+                     sx={{
+                       backgroundColor: '#fff',
+                       position: 'absolute',
+                       borderRadius: '5px',
+                       bottom: 10,
+                       left: 10
+                     }}>
+                  <DeleteForeverOutlinedIcon color="error" fontSize="large" />
+                </Box>
+              }
+              <img
+                src={selectedImage}
+                alt="Selected"
+                style={{ maxHeight: '100%', width: '100%', objectFit: 'scale-down', borderRadius: '8px' }}
+              />
+            </>
+          ) : (
+            <>
+              <Typography sx={{ position: 'absolute' }}>Upload image</Typography>
+              <input
+                type="file"
+                id="image"
+                style={{ width: '100%', height: '100%', opacity: 0 }}
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </>
+          )}
+        </Box>
+      </FormControl>
       <FormHelperText>{touched.image && errors.image}</FormHelperText>
-    </FormControl>
+    </label>
   );
 };
 

@@ -1,12 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
 // third party
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 // project imports
 import App from './App';
-import reducer from './store/reducer';
 
 // google-fonts
 import '@fontsource/roboto/400.css';
@@ -27,6 +25,7 @@ import '@fontsource/poppins/700.css';
 // style + assets
 import 'assets/scss/style.scss';
 import reportWebVitals from 'reportWebVitals';
+import store from './redux/store/store';
 
 import 'react-quill/dist/quill.snow.css'
 
@@ -45,7 +44,6 @@ if (typeof window !== 'undefined') {
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
-const store = configureStore({ reducer });
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 

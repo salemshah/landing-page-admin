@@ -5,15 +5,15 @@ import { useField, useFormikContext } from 'formik';
 
 const AppTextField = ({ name, label, helper, ...props }) => {
   const [field, meta] = useField(name);
-  const { errors } = useFormikContext();
+  const { errors, touched } = useFormikContext();
 
   return (
-    <FormControl fullWidth error={meta.touched && !!meta.error}>
+    <FormControl fullWidth error={touched[name] && !!errors[name]}>
       <TextField
         {...field}
         {...props}
         label={label}
-        error={!!errors[name]}
+        error={!!errors[name] && touched[name]}
         variant="outlined"
         fullWidth
       />

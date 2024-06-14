@@ -1,14 +1,15 @@
 import React from 'react';
 import { Formik } from 'formik';
 
-const AppFormik = ({ children, initialValues, validationSchema, handleSubmit }) => {
+const AppFormik = ({ initialValues, validationSchema, handleSubmit, children }) => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
+      enableReinitialize
     >
-      {() => (children)}
+      {() => children}
     </Formik>
   );
 };
