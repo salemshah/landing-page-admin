@@ -51,7 +51,7 @@ const CardSecondaryAction = ({ title, link, icon }) => {
 };
 
 CardSecondaryAction.propTypes = {
-  icon: PropTypes?.node,
+  icon: PropTypes.node,
   link: PropTypes.string,
   title: PropTypes.string
 };

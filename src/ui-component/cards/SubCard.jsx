@@ -37,14 +37,14 @@ const SubCard = React.forwardRef(
 );
 
 SubCard.propTypes = {
-  children: PropTypes?.node,
+  children: PropTypes.node,
   content: PropTypes.bool,
   contentClass: PropTypes.string,
   darkTitle: PropTypes.bool,
-  secondary: PropTypes.oneOfType([PropTypes?.node, PropTypes.string, PropTypes.object]),
+  secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
   sx: PropTypes.object,
   contentSX: PropTypes.object,
-  title: PropTypes.oneOfType([PropTypes?.node, PropTypes.string, PropTypes.object])
+  title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object])
 };
 
 SubCard.defaultProps = {

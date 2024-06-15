@@ -26,7 +26,7 @@ const AuthCardWrapper = ({ children, ...other }) => (
 );
 
 AuthCardWrapper.propTypes = {
-  children: PropTypes?.node
+  children: PropTypes.node
 };
 
 export default AuthCardWrapper;

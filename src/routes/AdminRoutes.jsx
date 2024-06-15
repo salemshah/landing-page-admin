@@ -22,8 +22,17 @@ const MainRoutes = {
   element: <AdminLayout />,
   children: [
     {
-      path: '/admin',
+      path: '/',
       element: <DashboardDefault />
+    },
+    {
+      path: 'dashboard',
+      children: [
+        {
+          path: 'default',
+          element: <DashboardDefault />
+        }
+      ]
     },
     {
       path: 'section',

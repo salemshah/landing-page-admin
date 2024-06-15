@@ -38,7 +38,7 @@ const ListItemWrapper = ({ children }) => {
 };
 
 ListItemWrapper.propTypes = {
-  children: PropTypes?.node
+  children: PropTypes.node
 };
 
 // ==============================|| NOTIFICATION LIST ITEM ||============================== //

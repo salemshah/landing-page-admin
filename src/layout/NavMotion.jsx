@@ -35,7 +35,7 @@ const NavMotion = ({ children }) => {
 };
 
 NavMotion.propTypes = {
-  children: PropTypes?.node
+  children: PropTypes.node
 };
 
 export default NavMotion;

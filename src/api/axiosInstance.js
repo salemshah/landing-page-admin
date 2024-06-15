@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://landing-page-api-jy99.onrender.com/api'
+  baseURL: 'http://localhost:9000/api' //'https://landing-page-api-jy99.onrender.com/api'
 });
 
 // Request interceptor
