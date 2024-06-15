@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 const Loader = () => (
   <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 1301, width: '100%' }}>
-    <LinearProgress color="primary" />
+    <LinearProgress sx={{height: 10}} color="primary" />
   </Box>
 );
 
