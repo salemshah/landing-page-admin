@@ -95,7 +95,7 @@ export default function Editor({
       <RootStyle
         sx={{
           borderRadius: '10px',
-          border: (theme) => `solid 1px ${theme.palette.secondary.main}`,
+          border: (theme) => `solid 1px #ccc`,
           ...(error && {
             border: (theme) => `solid 1px ${theme.palette.error.main}`
           }),

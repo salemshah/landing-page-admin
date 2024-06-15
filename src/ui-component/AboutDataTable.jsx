@@ -183,7 +183,7 @@ const AboutDataTable = () => {
                             : <Chip size="small" label="None" color="error" />
                         }
                       </TableCell>
-                      <TableCell>{about.description}</TableCell>
+                      <TableCell><div dangerouslySetInnerHTML={{ __html: about.description }} /></TableCell>
                       <TableCell sx={{ textAlign: 'center' }} colSpan={3}>
                         {
                           showMore[labelId] ? (
