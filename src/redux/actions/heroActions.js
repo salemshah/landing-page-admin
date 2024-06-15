@@ -78,7 +78,7 @@ export const updateHero = (id, updatedHero) => {
   };
 };
 
-export const createHero = (newHero) => {
+export const createHero = (newHero, setLoading) => {
   return (dispatch) => {
     axiosInstance.post('/hero', newHero, {
       headers: {
@@ -87,10 +87,12 @@ export const createHero = (newHero) => {
     })
       .then(() => {
         dispatch(fetchHeroes());
+        setLoading(false);
       })
       .catch(error => {
         const errorMsg = error.message;
         dispatch(fetchHeroFailure(errorMsg));
+        setLoading(false);
       });
   };
 };

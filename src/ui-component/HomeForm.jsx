@@ -12,7 +12,9 @@ import { createHero, updateHero } from '../redux/actions/heroActions';
 
 const HomeForm = () => {
   const dispatch = useDispatch();
-  const { heroToEdit, isEdit, heroEditId } = useSelector(state => state.hero);
+  const [loading, setLoading] = useState(false);
+  const { heroToEdit, isEdit, heroEditId, error } = useSelector(state => state.hero);
+
   const [heroInitialValuesState, setHeroInitialValuesState] = useState(heroInitialValues);
 
   useEffect(() => {
@@ -20,7 +22,8 @@ const HomeForm = () => {
   }, [heroToEdit]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-
+    setLoading(true);
+    setSubmitting(true);
     const formData = new FormData();
     formData.append('image', values.image);
     formData.append('heading', values.heading);
@@ -30,9 +33,9 @@ const HomeForm = () => {
 
     try {
       if (isEdit && heroEditId) {
-        await dispatch(updateHero(heroEditId, formData));
+        await dispatch(updateHero(heroEditId, formData, setLoading));
       } else {
-        await dispatch(createHero(formData));
+        await dispatch(createHero(formData, setLoading));
       }
     } catch (error) {
       console.error('Error in form submission:', error);
@@ -49,7 +52,7 @@ const HomeForm = () => {
       onSubmit={handleSubmit}
       enableReinitialize
     >
-      {({ resetForm }) => (
+      {() => (
         <Form autoComplete="off">
           <Grid container spacing={2}>
             <Grid item xs={12} lg={8}>
@@ -84,7 +87,7 @@ const HomeForm = () => {
               <AppImageUpload />
             </Grid>
             <Grid item xs={12}>
-              <AppSubmitButton text={isEdit ? 'Modifié' : 'Créer'} />
+              <AppSubmitButton text={isEdit ? 'Modifié' : 'Créer'} loading={loading} />
             </Grid>
           </Grid>
         </Form>
