@@ -6,8 +6,14 @@ const heroInitialValues = {
   image: null
 };
 
+const aboutInitialValues = {
+  description: '',
+  image: null
+};
+
 
 
 export {
-  heroInitialValues
+  heroInitialValues,
+  aboutInitialValues
 }

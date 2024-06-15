@@ -42,6 +42,8 @@ Editor.propTypes = {
 };
 
 export default function Editor({
+                                 toEdit,
+                                 isEdit,
                                  id = 'minimal-quill',
                                  error,
                                  value,
@@ -51,8 +53,6 @@ export default function Editor({
                                  sx,
                                  ...other
                                }) {
-
-  const { isEdit, heroToEdit } = useSelector(state => state.hero);
   const { setFieldValue } = useFormikContext();
   const [content, setContent] = useState(null);
   const quillRef = useRef(null);
@@ -63,14 +63,14 @@ export default function Editor({
 
   useEffect(() => {
     if (isEdit) {
-      setFieldValue('description', heroToEdit?.description);
-      setContent(heroToEdit?.description);
+      setFieldValue('description', toEdit?.description);
+      setContent(toEdit?.description);
     } else {
       setFieldValue('description', '');
       setContent(null);
     }
 
-  }, [heroToEdit]);
+  }, [toEdit]);
 
   const modules = {
     toolbar: {
@@ -105,7 +105,7 @@ export default function Editor({
         <EditorToolbar id={id} isSimple={simple} />
         <ReactQuill
           refs={quillRef}
-          value={content || heroToEdit?.description}
+          value={content || toEdit?.description}
           onChange={handleChange}
           modules={modules}
           formats={formats}

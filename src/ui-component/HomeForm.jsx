@@ -79,12 +79,12 @@ const HomeForm = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <AppEditorField name="description" helper="Text descriptive de page d'accueil" />
+                  <AppEditorField name="description" helper="Text descriptive de la section About" isEdit={isEdit} toEdit={heroToEdit} />
                 </Grid>
               </Grid>
             </Grid>
             <Grid item xs={12} lg={4}>
-              <AppImageUpload />
+              <AppImageUpload isEdit={isEdit} toEdit={heroToEdit} />
             </Grid>
             <Grid item xs={12}>
               <AppSubmitButton text={isEdit ? 'Modifié' : 'Créer'} loading={loading} />

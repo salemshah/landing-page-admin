@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: 'https://landing-page-api-jy99.onrender.com/api'
 });
 
-console.log('import.meta?.env?.MODE', import.meta?.env?.MODE);
+console.log('VITE_APP_END_POINT', import.meta.env.VITE_APP_END_POINT);
 // Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {

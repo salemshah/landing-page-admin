@@ -3,13 +3,15 @@ import { FormControl, FormHelperText } from '@mui/material';
 import { useFormikContext } from 'formik';
 import Editor from '../editor';
 
-const AppEditorField = ({ name, helper }) => {
+const AppEditorField = ({ name, helper, toEdit, isEdit }) => {
   const { touched, errors, values, setFieldValue } = useFormikContext();
 
   return (
     <FormControl fullWidth error={touched[name] && !!errors[name]}>
       <Editor
         id={name}
+        toEdit={toEdit}
+        isEdit={isEdit}
         value={values[name]}
         onChange={(value) => setFieldValue(name, value)}
         error={!!errors[name] && touched[name]}
