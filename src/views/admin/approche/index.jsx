@@ -1,20 +1,29 @@
 import Grid from '@mui/material/Grid';
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import ApproachForm from 'ui-component/ApproachForm';
+import ApproachDataTable from 'ui-component/ApproachDataTable';
 
-// ============================|| PROFILE ADMIN PAGE ||============================ //
+// ============================|| APPROACH ADMIN PAGE ||============================ //
 
 const About = () => {
 
   return (
-    <MainCard title="Basic Shadow" secondary={<SecondaryAction />}>
-      <Grid container >
-        <Grid item xs={12}>
-
+    <>
+      <MainCard title="Approche">
+        <Grid container>
+          <Grid item xs={12}>
+            <ApproachForm />
+          </Grid>
         </Grid>
-      </Grid>
-    </MainCard>
+      </MainCard>
+      <MainCard title="Liste de à propos" sx={{ mt: 3, mb: 15 }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <ApproachDataTable />
+          </Grid>
+        </Grid>
+      </MainCard>
+    </>
   );
 };
 
