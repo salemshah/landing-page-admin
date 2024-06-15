@@ -8,7 +8,13 @@ const heroValidationSchema = yup.object().shape({
   image: yup.mixed().required('Image is required')
 });
 
+const aboutValidationSchema = yup.object().shape({
+  description: yup.string().required('Description is required'),
+  image: yup.mixed().required('Image is required')
+});
+
 
 export {
-  heroValidationSchema
-}
+  heroValidationSchema,
+  aboutValidationSchema
+};

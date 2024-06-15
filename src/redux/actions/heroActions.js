@@ -38,7 +38,7 @@ export const fetchHeroes = () => {
     dispatch(fetchHeroRequest());
     axiosInstance.get('/hero')
       .then(response => {
-        const heroes = response.data.heroes;
+        const heroes = response.data.data;
         dispatch(fetchHeroSuccess(heroes));
       })
       .catch(error => {

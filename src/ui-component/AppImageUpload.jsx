@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, FormControl, FormHelperText } from '@mui/material';
 import { useFormikContext } from 'formik';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import { useSelector } from 'react-redux';
 
-const AppImageUpload = () => {
+const AppImageUpload = ({ isEdit, toEdit }) => {
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [isHover, setHover] = useState(false);
-  const { isEdit, heroToEdit } = useSelector(state => state.hero);
   const { setFieldValue, errors, touched } = useFormikContext();
 
   const handleImageChange = async (event) => {
@@ -20,13 +19,13 @@ const AppImageUpload = () => {
 
   useEffect(() => {
     if (isEdit) {
-      setSelectedImage(heroToEdit?.image);
-      setFieldValue('image', heroToEdit?.image);
+      setSelectedImage(toEdit?.image);
+      setFieldValue('image', toEdit?.image);
     } else {
       setSelectedImage(null);
       setFieldValue('image', null);
     }
-  }, [heroToEdit, isEdit]);
+  }, [toEdit, isEdit]);
 
   const handleRemoveImage = () => {
     setSelectedImage(null);
