@@ -61,7 +61,7 @@ export const deleteHero = (id) => {
   };
 };
 
-export const updateHero = (id, updatedHero) => {
+export const updateHero = (id, updatedHero, setLoading) => {
   return (dispatch) => {
     axiosInstance.put(`/hero/${id}`, updatedHero, {
       headers: {
@@ -70,10 +70,12 @@ export const updateHero = (id, updatedHero) => {
     })
       .then(() => {
         dispatch(fetchHeroes());
+        setLoading(false);
       })
       .catch(error => {
         const errorMsg = error.message;
         dispatch(fetchHeroFailure(errorMsg));
+        setLoading(false);
       });
   };
 };
