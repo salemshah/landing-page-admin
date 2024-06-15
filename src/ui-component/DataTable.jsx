@@ -67,7 +67,11 @@ const HeroDataTable = () => {
 
     setIsActiveStatus(heroState?.heroes?.find((hero) => hero._id === newSelected[0])?.status);
     setSelected(newSelected);
+    if (newSelected?.length > 1) setIsActiveStatus(false);
   };
+
+  //is delete button active
+  const isDeleteActive = !(selected?.length === 1 && isActiveStatus);
 
   const handleDelete = () => {
     selected.forEach((id) => dispatch(deleteHero(id)));
@@ -109,7 +113,7 @@ const HeroDataTable = () => {
         {selected?.length > 0 && (
           <Stack direction="row" spacing={4}>
             {
-              heroState?.heroes?.length > 1 && (<Tooltip title="Delete">
+              heroState?.heroes?.length > 1 && isDeleteActive && (<Tooltip title="Delete">
                 <IconButton onClick={handleDelete}>
                   <DeleteIcon />
                 </IconButton>
