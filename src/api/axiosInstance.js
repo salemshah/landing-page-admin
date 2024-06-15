@@ -2,10 +2,9 @@ import axios from 'axios';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://landing-page-api-jy99.onrender.com/api'
+  baseURL: import.meta.env.VITE_APP_END_POINT || 'https://landing-page-api-jy99.onrender.com/api'
 });
 
-console.log('VITE_APP_END_POINT', import.meta.env.VITE_APP_END_POINT);
 // Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
