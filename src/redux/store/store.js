@@ -2,15 +2,17 @@
 
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { thunk } from 'redux-thunk'; // Ensure this is correct
+import { thunk } from 'redux-thunk';
 import customizationReducer from 'store/customizationReducer';
 import heroReducer from '../reducers/heroReducer';
 import aboutReducer from '../reducers/aboutReducer';
+import approachReducer from '../reducers/approachReducer';
 
 const rootReducer = combineReducers({
   customization: customizationReducer,
   hero: heroReducer,
-  about: aboutReducer
+  about: aboutReducer,
+  approach: approachReducer
 });
 
 const store = configureStore({

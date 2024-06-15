@@ -11,9 +11,13 @@ const aboutInitialValues = {
   image: null
 };
 
-
+const approachInitialValues = {
+  description: '',
+  image: null
+};
 
 export {
   heroInitialValues,
-  aboutInitialValues
-}
+  aboutInitialValues,
+  approachInitialValues
+};
