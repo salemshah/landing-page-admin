@@ -1,21 +1,19 @@
 import Grid from '@mui/material/Grid';
-// project imports
 import MainCard from 'ui-component/cards/MainCard';
-import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import MessageDataTable from 'ui-component/MessageDataTable';
 
-// ============================|| PROFILE ADMIN PAGE ||============================ //
+// ============================|| MESSAGE ADMIN PAGE ||============================ //
 
-const About = () => {
-
+const Home = () => {
   return (
-    <MainCard title="Basic Shadow" secondary={<SecondaryAction />}>
-      <Grid container >
+    <MainCard title="Message" sx={{ mt: 3, mb: 15 }}>
+      <Grid container>
         <Grid item xs={12}>
-
+          <MessageDataTable />
         </Grid>
       </Grid>
     </MainCard>
   );
 };
 
-export default About;
+export default Home;
