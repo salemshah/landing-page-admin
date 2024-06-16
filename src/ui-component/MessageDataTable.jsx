@@ -97,7 +97,7 @@ const MessageDataTable = () => {
         {selected?.length > 0 && (
           <Stack direction="row" spacing={4}>
             {
-              messageState?.messages?.length > 1 && (<Tooltip title="Delete">
+              messageState?.messages?.length >= 1 && (<Tooltip title="Delete">
                 <IconButton onClick={handleDelete}>
                   <DeleteIcon />
                 </IconButton>
