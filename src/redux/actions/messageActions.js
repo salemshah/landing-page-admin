@@ -61,18 +61,15 @@ export const deleteMessage = (id) => {
   };
 };
 
-export const updateMessage = (id, updatedMessage, setLoading) => {
+export const updateMessage = (id) => {
   return (dispatch) => {
-    axiosInstance.put(`/message/${id}`, updatedMessage)
+    axiosInstance.put(`/message/${id}`)
       .then(() => {
         dispatch(fetchMessages());
-        setLoading(false);
-      })
-      .catch(error => {
-        const errorMsg = error.message;
-        dispatch(fetchMessageFailure(errorMsg));
-        setLoading(false);
-      });
+      }).catch(error => {
+      const errorMsg = error.message;
+      dispatch(fetchMessageFailure(errorMsg));
+    });
   };
 };
 

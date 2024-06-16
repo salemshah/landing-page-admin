@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAbouts, deleteAbout, selectAboutToEdite, updateStatus } from '../redux/actions/aboutActions';
+import { fetchMessages, deleteMessage, updateMessage } from '../redux/actions/messageActions';
 import ArrowCircleDownOutlinedIcon from '@mui/icons-material/ArrowCircleDownOutlined';
 import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   Paper,
   Table,
@@ -22,33 +21,32 @@ import {
   Box
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 
-const AboutDataTable = () => {
+const MessageDataTable = () => {
   const dispatch = useDispatch();
-  const aboutState = useSelector(state => state.about);
-  const loading = aboutState?.loading;
+  const messageState = useSelector(state => state.message);
+  const loading = messageState?.loading;
 
   const [selected, setSelected] = useState([]);
   const [showMore, setShowMore] = useState({});
   const [isActiveStatus, setIsActiveStatus] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchAbouts());
+    dispatch(fetchMessages());
   }, [dispatch]);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = aboutState?.abouts?.map((n) => n._id);
+      const newSelected = messageState?.messages?.map((n) => n._id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, id, about) => {
+  const handleClick = (event, id, message) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -65,42 +63,28 @@ const AboutDataTable = () => {
       );
     }
 
-    setIsActiveStatus(aboutState?.abouts?.find((about) => about._id === newSelected[0])?.status);
+    setIsActiveStatus(messageState?.messages?.find((message) => message._id === newSelected[0])?.status);
     setSelected(newSelected);
     if (newSelected?.length > 1) setIsActiveStatus(false);
   };
 
-  //is delete button active
-  const isDeleteActive = !(selected?.length === 1 && isActiveStatus);
-
   const handleDelete = () => {
-    selected.forEach((id) => dispatch(deleteAbout(id)));
+    selected.forEach((id) => dispatch(deleteMessage(id)));
     setSelected([]);
   };
 
-  const handleUpdate = () => {
-    if (selected.length === 1) {
-      const data = aboutState?.abouts?.find((about) => about._id === selected[0]);
-      dispatch(selectAboutToEdite(data));
-      setSelected([]);
-    }
-  };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
-
-  const handleShowMoreToggle = (id) => {
+  const handleShowMoreToggle = (enhancedId, message) => {
+    if (message?._id && !message.status) {
+      dispatch(updateMessage(message._id));
+    }
     setShowMore((prev) => ({
       ...prev,
-      [id]: !prev[id]
+      [enhancedId]: !prev[enhancedId]
     }));
   };
 
-  function handleUpdateStatus() {
-    if (selected.length === 1) {
-      dispatch(updateStatus(selected[0]));
-      setSelected([]);
-    }
-  }
 
   return (
     <Paper>
@@ -113,25 +97,12 @@ const AboutDataTable = () => {
         {selected?.length > 0 && (
           <Stack direction="row" spacing={4}>
             {
-              aboutState?.abouts?.length > 1 && isDeleteActive && (<Tooltip title="Delete">
+              messageState?.messages?.length > 1 && (<Tooltip title="Delete">
                 <IconButton onClick={handleDelete}>
                   <DeleteIcon />
                 </IconButton>
               </Tooltip>)
             }
-            {selected?.length === 1 && (
-              <>
-                <Tooltip title="Update">
-                  <IconButton onClick={handleUpdate}>
-                    <BorderColorIcon />
-                  </IconButton>
-                </Tooltip>
-                <Button disabled={isActiveStatus} variant="contained" size="small" type="button"
-                        onClick={handleUpdateStatus}>
-                  Active
-                </Button>
-              </>
-            )}
           </Stack>
         )}
       </Toolbar>
@@ -146,23 +117,25 @@ const AboutDataTable = () => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    indeterminate={selected?.length > 0 && selected?.length < aboutState?.abouts?.length}
-                    checked={aboutState?.abouts?.length > 0 && selected?.length === aboutState?.abouts?.length}
+                    indeterminate={selected?.length > 0 && selected?.length < messageState?.messages?.length}
+                    checked={messageState?.messages?.length > 0 && selected?.length === messageState?.messages?.length}
                     onChange={handleSelectAllClick}
                   />
                 </TableCell>
-                <TableCell>Active</TableCell>
-                <TableCell>Description</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Nom</TableCell>
+                <TableCell>Prénom</TableCell>
+                <TableCell>Sujet</TableCell>
                 <TableCell sx={{ textAlign: 'center' }}>Show more</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {aboutState.abouts?.map((about) => {
-                const isItemSelected = isSelected(about._id);
-                const labelId = `enhanced-table-checkbox-${about._id}`;
+              {messageState.messages?.map((message) => {
+                const isItemSelected = isSelected(message._id);
+                const labelId = `enhanced-table-checkbox-${message._id}`;
 
                 return (
-                  <React.Fragment key={about._id}>
+                  <React.Fragment key={message._id}>
                     <TableRow
                       hover
                       role="checkbox"
@@ -170,7 +143,7 @@ const AboutDataTable = () => {
                       tabIndex={-1}
                       selected={isItemSelected}
                     >
-                      <TableCell onClick={(event) => handleClick(event, about._id, about)} padding="checkbox">
+                      <TableCell onClick={(event) => handleClick(event, message._id, message)} padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
@@ -178,18 +151,22 @@ const AboutDataTable = () => {
                       </TableCell>
                       <TableCell>
                         {
-                          about?.status ?
-                            <Chip size="small" label="Active" color="success" />
-                            : <Chip size="small" label="None" color="error" />
+                          message?.status ?
+                            <Chip size="small" label="Lu" color="success" />
+                            : <Chip size="small" label="Non lu" color="info" />
                         }
                       </TableCell>
-                      <TableCell><div dangerouslySetInnerHTML={{ __html: about.description }} /></TableCell>
+                      <TableCell>{message.name}</TableCell>
+                      <TableCell>{message.lastName}</TableCell>
+                      <TableCell>
+                        <div dangerouslySetInnerHTML={{ __html: message.subject }} />
+                      </TableCell>
                       <TableCell sx={{ textAlign: 'center' }} colSpan={3}>
                         {
                           showMore[labelId] ? (
-                            <ArrowCircleUpOutlinedIcon onClick={() => handleShowMoreToggle(labelId)} />
+                            <ArrowCircleUpOutlinedIcon onClick={() => handleShowMoreToggle(labelId, message)} />
                           ) : (
-                            <ArrowCircleDownOutlinedIcon onClick={() => handleShowMoreToggle(labelId)} />
+                            <ArrowCircleDownOutlinedIcon onClick={() => handleShowMoreToggle(labelId, message)} />
                           )
                         }
                       </TableCell>
@@ -199,17 +176,17 @@ const AboutDataTable = () => {
                         <TableRow>
                           <TableCell colSpan={6}>
                             <Grid container spacing={2}>
-                              <Grid item lg={9}>
-                                <Typography variant="h5">Description</Typography>
-                                <div dangerouslySetInnerHTML={{ __html: about.description }} />
-                              </Grid>
                               <Grid item lg={3}>
-                                <img alt="about" style={{
-                                  height: '100%',
-                                  width: '100%',
-                                  objectFit: 'scale-down',
-                                  borderRadius: '10px'
-                                }} src={about?.imgUrl} />
+                                <Typography variant="h5" sx={{ mb: 2 }}>Details</Typography>
+                                <Typography>Name: {message.name}</Typography>
+                                <Typography>Last Name: {message.lastName}</Typography>
+                                <Typography>Subject: {message.subject}</Typography>
+                                <Typography>Email: {message.email}</Typography>
+                                <Typography>IP: {message.ip}</Typography>
+                              </Grid>
+                              <Grid item lg={9}>
+                                <Typography variant="h5" sx={{ mb: 2 }}>Message</Typography>
+                                <div dangerouslySetInnerHTML={{ __html: message.message }} />
                               </Grid>
                             </Grid>
                           </TableCell>
@@ -227,4 +204,4 @@ const AboutDataTable = () => {
   );
 };
 
-export default AboutDataTable;
+export default MessageDataTable;

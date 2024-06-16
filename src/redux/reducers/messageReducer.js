@@ -1,55 +1,61 @@
 import {
-  FETCH_ABOUT_REQUEST,
-  FETCH_ABOUT_SUCCESS,
-  FETCH_ABOUT_FAILURE,
-  SELECT_ABOUT_TO_EDIT
-} from '../types/aboutTypes';
+  FETCH_MESSAGE_REQUEST,
+  FETCH_MESSAGE_SUCCESS,
+  FETCH_MESSAGE_FAILURE,
+  SELECT_MESSAGE_TO_EDIT
+} from '../types/messageTypes';
 
 const initialState = {
   loading: false,
-  abouts: [],
+  messages: [],
   error: '',
-  aboutToEdit: {},
+  messageToEdit: {},
   isEdit: false,
-  aboutEditId: null
+  messageEditId: null
 };
 
-const aboutReducer = (state = initialState, action) => {
+const messageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_ABOUT_TO_EDIT:
+    case SELECT_MESSAGE_TO_EDIT:
       const {
-        description,
-        imgUrl,
+        name,
+        lastName,
+        email,
+        subject,
+        message,
         _id
       } = action.payload;
 
       return {
         ...state,
-        aboutToEdit: {
-          description,
-          image: imgUrl
+        messageToEdit: {
+          name,
+          lastName,
+          email,
+          subject,
+          message
         },
-        aboutEditId: _id,
+        messageEditId: _id,
         isEdit: !!action.payload
       };
-    case FETCH_ABOUT_REQUEST:
+    case FETCH_MESSAGE_REQUEST:
       return {
         ...state,
         loading: true
       };
-    case FETCH_ABOUT_SUCCESS:
+    case FETCH_MESSAGE_SUCCESS:
       return {
-        aboutToEdit: {},
+        messageToEdit: {},
         isEdit: false,
-        aboutEditId: null,
+        messageEditId: null,
         loading: false,
-        abouts: action.payload,
+        messages: action.payload,
         error: ''
       };
-    case FETCH_ABOUT_FAILURE:
+    case FETCH_MESSAGE_FAILURE:
       return {
         loading: false,
-        abouts: [],
+        messages: [],
         error: action.payload
       };
     default:
@@ -57,4 +63,4 @@ const aboutReducer = (state = initialState, action) => {
   }
 };
 
-export default aboutReducer;
+export default messageReducer;
