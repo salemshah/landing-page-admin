@@ -25,6 +25,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axiosInstance from 'api/axiosInstance';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -42,9 +43,15 @@ const AuthLogin = ({ ...others }) => {
     event.preventDefault();
   };
 
-  const handleSubmitAuth = (data) => {
-    // event.preventDefault();
-    console.log(data);
+  const handleSubmitAuth = async (data) => {
+    try {
+      const res = await axiosInstance.post('/auth/login', data);
+      localStorage.setItem('user', JSON.stringify(res?.data?.user));
+      localStorage.setItem('token', res?.data?.token);
+      window.location.href = '/';
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   return (
@@ -52,15 +59,15 @@ const AuthLogin = ({ ...others }) => {
       <Grid container direction="column" justifyContent="center" spacing={2}>
         <Grid item xs={12} container alignItems="center" justifyContent="center">
           <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1" >Se Connecter</Typography>
+            <Typography variant="subtitle1">Se Connecter</Typography>
           </Box>
         </Grid>
       </Grid>
 
       <Formik
         initialValues={{
-          email: '',
-          password: '',
+          email: 'jan@gmail.com',
+          password: '123456',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -96,6 +103,7 @@ const AuthLogin = ({ ...others }) => {
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
                 value={values.password}
                 name="password"
                 onBlur={handleBlur}
