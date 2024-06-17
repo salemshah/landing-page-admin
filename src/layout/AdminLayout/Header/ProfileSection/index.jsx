@@ -33,6 +33,7 @@ import User1 from 'assets/images/users/user.png';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
+import axiosInstance from '../../../../api/axiosInstance';
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -48,7 +49,15 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
+
+    try {
+      await axiosInstance.post('/auth/logout');
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      window.location.href = '/auth/login';
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   const handleClose = (event) => {
@@ -177,7 +186,7 @@ const ProfileSection = () => {
                     <Box sx={{ p: 2, pt: 0 }}>
                       <Card
                         sx={{
-                          bgcolor: theme.palette.primary.light,
+                          bgcolor: theme.palette.primary.light
                         }}
                       >
                       </Card>
