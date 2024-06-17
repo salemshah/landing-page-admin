@@ -16,7 +16,7 @@ const chartData = {
     },
     responsive: [
       {
-        breakpoint: 480,
+        // breakpoint: 480,
         options: {
           legend: {
             position: 'bottom',

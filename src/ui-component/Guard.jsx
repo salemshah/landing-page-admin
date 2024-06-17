@@ -6,11 +6,7 @@ import Box from '@mui/material/Box';
 const Guard = ({ children }) => {
 
   const [isLoading, setIsLoading] = useState(false);
-
-
   useEffect(() => {
-
-
     setIsLoading(true);
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
