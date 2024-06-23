@@ -18,7 +18,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </MainCard>
-      <MainCard title="Hero list" sx={{mt: 3, mb: 15}}>
+      <MainCard title="Liste des héros" sx={{mt: 3, mb: 15}}>
         <Grid container>
           <Grid item xs={12}>
             <DataTable />

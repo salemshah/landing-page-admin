@@ -158,29 +158,29 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2, pb: 0 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
+                        <Typography variant="h4">Bonjour,</Typography>
                         <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
                           Mind-A
                         </Typography>
                       </Stack>
                     </Stack>
-                    <OutlinedInput
-                      sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
-                      id="input-search-profile"
-                      value={value}
-                      onChange={(e) => setValue(e.target.value)}
-                      placeholder="Search profile options"
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
-                        </InputAdornment>
-                      }
-                      aria-describedby="search-helper-text"
-                      inputProps={{
-                        'aria-label': 'weight'
-                      }}
-                    />
-                    <Divider />
+                    {/*<OutlinedInput*/}
+                    {/*  sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}*/}
+                    {/*  id="input-search-profile"*/}
+                    {/*  value={value}*/}
+                    {/*  onChange={(e) => setValue(e.target.value)}*/}
+                    {/*  placeholder="Search profile options"*/}
+                    {/*  startAdornment={*/}
+                    {/*    <InputAdornment position="start">*/}
+                    {/*      <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />*/}
+                    {/*    </InputAdornment>*/}
+                    {/*  }*/}
+                    {/*  aria-describedby="search-helper-text"*/}
+                    {/*  inputProps={{*/}
+                    {/*    'aria-label': 'weight'*/}
+                    {/*  }}*/}
+                    {/*/>*/}
+                    <Divider sx={{mt: 2}} />
                   </Box>
                   <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
                     <Box sx={{ p: 2, pt: 0 }}>
@@ -214,7 +214,7 @@ const ProfileSection = () => {
                           <ListItemIcon>
                             <IconSettings stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                          <ListItemText primary={<Typography variant="body2">Paramètres du compte</Typography>} />
                         </ListItemButton>
                         <ListItemButton
                           sx={{ borderRadius: `${customization.borderRadius}px` }}
@@ -228,7 +228,7 @@ const ProfileSection = () => {
                             primary={
                               <Grid container spacing={1} justifyContent="space-between">
                                 <Grid item>
-                                  <Typography variant="body2">Social Profile</Typography>
+                                  <Typography variant="body2">Profil social</Typography>
                                 </Grid>
                                 <Grid item>
                                   <Chip
@@ -252,7 +252,7 @@ const ProfileSection = () => {
                           <ListItemIcon>
                             <IconLogout stroke={1.5} size="1.3rem" />
                           </ListItemIcon>
-                          <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                          <ListItemText primary={<Typography variant="body2">Se déconnecter</Typography>} />
                         </ListItemButton>
                       </List>
                     </Box>

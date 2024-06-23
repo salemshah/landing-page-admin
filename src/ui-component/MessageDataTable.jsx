@@ -124,9 +124,8 @@ const MessageDataTable = () => {
                 </TableCell>
                 <TableCell>Status</TableCell>
                 <TableCell>Nom</TableCell>
-                <TableCell>Prénom</TableCell>
                 <TableCell>Sujet</TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>Show more</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>Montre plus</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -157,7 +156,6 @@ const MessageDataTable = () => {
                         }
                       </TableCell>
                       <TableCell>{message.name}</TableCell>
-                      <TableCell>{message.lastName}</TableCell>
                       <TableCell>
                         <div dangerouslySetInnerHTML={{ __html: message.subject }} />
                       </TableCell>
