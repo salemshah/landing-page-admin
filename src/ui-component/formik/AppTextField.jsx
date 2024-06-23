@@ -1,4 +1,3 @@
-// src/components/AppTextField.js
 import React from 'react';
 import { TextField, FormControl, FormHelperText } from '@mui/material';
 import { useField, useFormikContext } from 'formik';
@@ -17,7 +16,6 @@ const AppTextField = ({ name, label, helper, ...props }) => {
         variant="outlined"
         fullWidth
       />
-      <FormHelperText>{meta.touched && meta.error}</FormHelperText>
       {helper && <FormHelperText>{helper}</FormHelperText>}
     </FormControl>
   );

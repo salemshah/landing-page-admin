@@ -16,8 +16,24 @@ const approachInitialValues = {
   image: null
 };
 
+
+const serviceInitialValues = {
+  phoneNumber: '',
+  email: '',
+  footerMessage: '',
+  formHeader: '',
+  formDescription: '',
+  facebookLink: '',
+  instagramLink: '',
+  tiktokLink: '',
+  youtubeLink: '',
+  xLink: '',
+  servicesEmails: '',
+};
+
 export {
   heroInitialValues,
   aboutInitialValues,
-  approachInitialValues
+  approachInitialValues,
+  serviceInitialValues
 };

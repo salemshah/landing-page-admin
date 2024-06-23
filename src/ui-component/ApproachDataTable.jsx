@@ -128,7 +128,7 @@ const ApproachDataTable = () => {
                 </Tooltip>
                 <Button disabled={isActiveStatus} variant="contained" size="small" type="button"
                         onClick={handleUpdateStatus}>
-                  Active
+                  Activer
                 </Button>
               </>
             )}
@@ -151,9 +151,9 @@ const ApproachDataTable = () => {
                     onChange={handleSelectAllClick}
                   />
                 </TableCell>
-                <TableCell>Active</TableCell>
+                <TableCell>Status</TableCell>
                 <TableCell>Description</TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>Show more</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>Montre plus</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

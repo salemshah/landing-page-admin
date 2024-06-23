@@ -79,7 +79,7 @@ const AppImageUpload = ({ isEdit, toEdit }) => {
             </>
           ) : (
             <>
-              <Typography sx={{ position: 'absolute' }}>Upload image</Typography>
+              <Typography sx={{ position: 'absolute' }}>Télécharger une image</Typography>
               <input
                 type="file"
                 id="image"

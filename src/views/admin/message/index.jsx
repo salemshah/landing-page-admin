@@ -6,7 +6,7 @@ import MessageDataTable from 'ui-component/MessageDataTable';
 
 const Home = () => {
   return (
-    <MainCard title="Message" sx={{ mt: 3, mb: 15 }}>
+    <MainCard title="Messages" sx={{ mt: 3, mb: 15 }}>
       <Grid container>
         <Grid item xs={12}>
           <MessageDataTable />

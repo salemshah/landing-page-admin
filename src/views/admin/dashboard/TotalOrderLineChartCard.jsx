@@ -22,6 +22,7 @@ import ChartDataYear from './chart-data/total-order-year-line-chart';
 // assets
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import TrafficIcon from '@mui/icons-material/Traffic';
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
@@ -88,7 +89,8 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                         mt: 1
                       }}
                     >
-                      <LocalMallOutlinedIcon fontSize="inherit" />
+                      {/*<LocalMallOutlinedIcon fontSize="inherit" />*/}
+                      <TrafficIcon fontSize="large" />
                     </Avatar>
                   </Grid>
                   <Grid item>
@@ -99,7 +101,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: 'inherit' }}
                       onClick={(e) => handleChangeTime(e, true)}
                     >
-                      Month
+                      Mois
                     </Button>
                     <Button
                       disableElevation
@@ -108,7 +110,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                       sx={{ color: 'inherit' }}
                       onClick={(e) => handleChangeTime(e, false)}
                     >
-                      Year
+                      Année
                     </Button>
                   </Grid>
                 </Grid>
@@ -117,34 +119,22 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                 <Grid container alignItems="center">
                   <Grid item xs={6}>
                     <Grid container alignItems="center">
-                      <Grid item>
-                        {timeValue ? (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>€108</Typography>
-                        ) : (
-                          <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>€961</Typography>
-                        )}
-                      </Grid>
-                      <Grid item>
-                        <Avatar
-                          sx={{
-                            ...theme.typography.smallAvatar,
-                            cursor: 'pointer',
-                            bgcolor: 'primary.200',
-                            color: 'primary.dark'
-                          }}
-                        >
-                          <ArrowDownwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
-                        </Avatar>
-                      </Grid>
+                      {/*<Grid item>*/}
+                      {/*  {timeValue ? (*/}
+                      {/*    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>108</Typography>*/}
+                      {/*  ) : (*/}
+                      {/*    <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>961</Typography>*/}
+                      {/*  )}*/}
+                      {/*</Grid>*/}
                       <Grid item xs={12}>
                         <Typography
                           sx={{
                             fontSize: '1rem',
                             fontWeight: 500,
-                            color: 'primary.200'
+                            color: 'primary.light'
                           }}
                         >
-                          Total Order
+                          Trafic du landing page
                         </Typography>
                       </Grid>
                     </Grid>

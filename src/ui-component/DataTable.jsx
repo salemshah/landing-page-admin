@@ -151,11 +151,11 @@ const HeroDataTable = () => {
                     onChange={handleSelectAllClick}
                   />
                 </TableCell>
-                <TableCell>Active</TableCell>
+                <TableCell>Status</TableCell>
                 <TableCell>Heading</TableCell>
                 <TableCell>Text Anim 1</TableCell>
                 <TableCell>Text Anim 2</TableCell>
-                <TableCell sx={{ textAlign: 'center' }}>Show more</TableCell>
+                <TableCell sx={{ textAlign: 'center' }}>Montre plus</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
