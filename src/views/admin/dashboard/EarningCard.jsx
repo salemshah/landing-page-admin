@@ -169,7 +169,7 @@ const EarningCard = ({ isLoading }) => {
                     color: 'white'
                   }}
                 >
-                  Nombre de visites ce mois-ci
+                  Visite du jeu éducatif
                 </Typography>
               </Grid>
             </Grid>

@@ -134,7 +134,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                             color: 'primary.light'
                           }}
                         >
-                          Trafic du landing page
+                          Progression
                         </Typography>
                       </Grid>
                     </Grid>
