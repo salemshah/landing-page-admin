@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_END_POINT || 'https://landing-page-api-jy99.onrender.com/api'
+  baseURL: import.meta.env.VITE_APP_END_POINT || 'https://api.minda-app.com/api'
 });
 
 // Request interceptor
